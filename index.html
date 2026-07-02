@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Registration Form</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:800px;
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+    color:#333;
+}
+
+form{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.full{
+    grid-column:1/3;
+}
+
+label{
+    font-weight:bold;
+    display:block;
+    margin-bottom:5px;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+input:focus,select:focus{
+    outline:none;
+    border-color:#2196f3;
+    box-shadow:0 0 5px rgba(33,150,243,.5);
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#2196f3;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1976d2;
+}
+
+#status{
+    margin-top:15px;
+    text-align:center;
+    font-weight:bold;
+}
+
+@media(max-width:768px){
+
+form{
+grid-template-columns:1fr;
+}
+
+.full{
+grid-column:1;
+}
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Student Registration Form</h1>
+
+<form id="userForm">
+
+<div>
+<label>Name</label>
+<input type="text" id="name" required>
+</div>
+
+<div>
+<label>Age</label>
+<input type="number" id="age" required>
+</div>
+
+<div>
+<label>Gmail</label>
+<input type="email" id="gmail" required>
+</div>
+
+<div>
+<label>Phone Number</label>
+<input type="tel" id="phone" required>
+</div>
+
+<div>
+<label>Password</label>
+<input type="password" id="password" required>
+</div>
+
+<div>
+<label>Gender</label>
+<select id="gender" required>
+<option value="">Select</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+</div>
+
+<div>
+<label>State</label>
+<input type="text" id="state" required>
+</div>
+
+<div>
+<label>City</label>
+<input type="text" id="city" required>
+</div>
+
+<div class="full">
+<label>Country</label>
+<input type="text" id="country" required>
+</div>
+
+<div class="full">
+<label>Profile Photo</label>
+<input type="file" id="photo" accept="image/*" required>
+</div>
+
+<div class="full">
+<button type="submit">Submit</button>
+</div>
+
+</form>
+
+<p id="status"></p>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
+
+const firebaseConfig = {
+apiKey:"YOUR_API_KEY",
+authDomain:"validate-69e30.firebaseapp.com",
+databaseURL:"https://validate-69e30-default-rtdb.firebaseio.com/",
+projectId:"validate-69e30",
+storageBucket:"validate-69e30.firebasestorage.app",
+messagingSenderId:"765415181249",
+appId:"1:765415181249:web:9f5bd2fc121f245a03bd40"
+};
+
+const app=initializeApp(firebaseConfig);
+
+const db=getDatabase(app);
+const storage=getStorage(app);
+
+const form=document.getElementById("userForm");
+const status=document.getElementById("status");
+
+form.addEventListener("submit",async(e)=>{
+
+e.preventDefault();
+
+const file=document.getElementById("photo").files[0];
+
+if(!file){
+status.innerHTML="Please select a photo.";
+return;
+}
+
+try{
+
+const imageRef=storageRef(storage,"photos/"+Date.now()+"_"+file.name);
+
+await uploadBytes(imageRef,file);
+
+const photoURL=await getDownloadURL(imageRef);
+
+const userRef=push(ref(db,"users"));
+
+await set(userRef,{
+
+name:document.getElementById("name").value,
+age:document.getElementById("age").value,
+gmail:document.getElementById("gmail").value,
+phone:document.getElementById("phone").value,
+password:document.getElementById("password").value,
+gender:document.getElementById("gender").value,
+state:document.getElementById("state").value,
+city:document.getElementById("city").value,
+country:document.getElementById("country").value,
+photo:photoURL
+
+});
+
+status.innerHTML="✅ Data and Photo Uploaded Successfully!";
+form.reset();
+
+}catch(error){
+
+status.innerHTML=error.message;
+
+}
+
+});
+
+</script>
+
+</body>
+</html>

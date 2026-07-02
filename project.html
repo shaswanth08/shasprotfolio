@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | My Portfolio</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+    min-height:100vh;
+    color:#333;
+}
+
+/* Header */
+
+header{
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(12px);
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+}
+
+header h1{
+    font-size:42px;
+    letter-spacing:2px;
+}
+
+/* Navigation */
+
+nav{
+    background:#0f172a;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    padding:15px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:10px 20px;
+    border-radius:30px;
+    transition:.3s;
+    font-weight:bold;
+}
+
+nav a:hover{
+    background:#38bdf8;
+    color:#000;
+    transform:translateY(-3px);
+}
+
+/* Content */
+
+.content{
+    width:90%;
+    max-width:1100px;
+    margin:40px auto;
+}
+
+.content h2{
+    text-align:center;
+    color:white;
+    margin-bottom:35px;
+    font-size:32px;
+}
+
+/* Project Cards */
+
+.project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.project-card{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 12px 25px rgba(0,0,0,.25);
+    transition:.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.project-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:6px;
+    background:linear-gradient(to right,#2563eb,#38bdf8);
+}
+
+.project-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 18px 35px rgba(0,0,0,.35);
+}
+
+.project-card h3{
+    color:#2563eb;
+    margin-bottom:12px;
+}
+
+.project-card p{
+    line-height:1.7;
+    color:#555;
+}
+
+.tech{
+    margin-top:18px;
+}
+
+.tech span{
+    display:inline-block;
+    background:#e0f2fe;
+    color:#0369a1;
+    padding:6px 12px;
+    border-radius:20px;
+    margin:5px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* Button */
+
+.button-area{
+    text-align:center;
+    margin:40px 0;
+}
+
+.back-link{
+    display:inline-block;
+    background:#38bdf8;
+    color:white;
+    text-decoration:none;
+    padding:14px 30px;
+    border-radius:30px;
+    font-size:18px;
+    transition:.3s;
+}
+
+.back-link:hover{
+    background:#0ea5e9;
+    transform:scale(1.05);
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    color:white;
+    padding:20px;
+    margin-top:20px;
+    font-size:15px;
+}
+
+/* Mobile Responsive */
+
+@media(max-width:768px){
+
+header h1{
+    font-size:30px;
+}
+
+nav{
+    flex-direction:column;
+    align-items:center;
+}
+
+nav a{
+    width:90%;
+    text-align:center;
+}
+
+.content h2{
+    font-size:26px;
+}
+
+.project-card{
+    padding:20px;
+}
+
+.back-link{
+    width:100%;
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>🚀 My Projects</h1>
+</header>
+
+<nav>
+    <a href="home.html">🏠 Home</a>
+    <a href="about.html">👤 About</a>
+    <a href="skills.html">💡 Skills</a>
+    <a href="contact.html">📞 Contact</a>
+    <a href="index.html">📄 Personal Details</a>
+</nav>
+
+<div class="content">
+
+<h2>Highlighted Projects</h2>
+
+<div class="project-grid">
+
+<div class="project-card">
+<h3>🎓 Student Portfolio Website</h3>
+<p>
+A responsive personal portfolio website developed using HTML, CSS and JavaScript to showcase my profile, skills, achievements and projects.
+</p>
+
+<div class="tech">
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+</div>
+
+</div>
+
+<div class="project-card">
+<h3>🏫 College Management System</h3>
+<p>
+A web-based system that manages student records, departments, courses and academic information with a simple and user-friendly interface.
+</p>
+
+<div class="tech">
+<span>HTML</span>
+<span>CSS</span>
+<span>Firebase</span>
+</div>
+
+</div>
+
+<div class="project-card">
+<h3>🤖 AI Chatbot</h3>
+<p>
+An AI-powered chatbot prototype capable of answering user queries using JavaScript and modern AI concepts for interactive conversations.
+</p>
+
+<div class="tech">
+<span>JavaScript</span>
+<span>AI</span>
+<span>Chatbot</span>
+</div>
+
+</div>
+
+<div class="project-card">
+<h3>📝 Student Registration Form</h3>
+<p>
+A responsive registration form integrated with Firebase Realtime Database and Firebase Storage to securely store user information and profile photos.
+</p>
+
+<div class="tech">
+<span>Firebase</span>
+<span>Database</span>
+<span>Storage</span>
+</div>
+
+</div>
+
+<div class="project-card">
+<h3>🌐 Personal Information Form</h3>
+<p>
+A modern responsive form for collecting personal details including contact information, address, gender and profile image.
+</p>
+
+<div class="tech">
+<span>HTML Forms</span>
+<span>CSS</span>
+<span>Responsive</span>
+</div>
+
+</div>
+
+<div class="project-card">
+<h3>💻 Web Development Projects</h3>
+<p>
+A collection of frontend projects demonstrating responsive layouts, animations, modern UI components and interactive web applications.
+</p>
+
+<div class="tech">
+<span>Responsive UI</span>
+<span>CSS Animation</span>
+<span>Frontend</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="button-area">
+<a class="back-link" href="home.html">⬅ Back to Home</a>
+</div>
+
+</div>
+
+<footer>
+© 2026 My Portfolio | Designed with ❤️
+</footer>
+
+</body>
+</html>
